@@ -188,13 +188,13 @@ class ServoRefTestExecutor(ProcessTestExecutor):
         full_url = self.test_url(test)
 
         with TempFilename(self.tempdir) as output_path:
-            debug_args, self.command = browser_command(
+            debug_args, command = browser_command(
                 self.binary,
                 ["--cpu", "--hard-fail", "--exit", "-u", "Servo/wptrunner", "-Z",
                  "disable-text-aa", "--output=%s" % output_path, full_url],
                 self.debug_info)
 
-            self.command = debug_args + self.command
+            self.command = debug_args + command
 
             env = os.environ.copy()
             env["HOST_FILE"] = self.hosts_path
